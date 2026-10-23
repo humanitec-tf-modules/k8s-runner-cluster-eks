@@ -1,7 +1,9 @@
 # EKS Kubernetes runner cluster
 
-> [!NOTE]
-> 🚧 The content of this repository is currently being curated. Please wait for the first release to appear before using it.
+TODO - add description
+
+TODO - add usage instructions
+
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
