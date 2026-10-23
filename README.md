@@ -10,10 +10,6 @@ TODO - add usage instructions
 
 No requirements.
 
-## Providers
-
-No providers.
-
 ## Modules
 
 No modules.
