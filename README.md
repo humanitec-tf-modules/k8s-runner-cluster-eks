@@ -17,6 +17,7 @@ When the runner cluster is also an Operator cluster, you can use all defaults an
 module "my_eks_runner_cluster" {
   source = "github.com/humanitec-tf-modules/k8s-runner-cluster-eks?ref=vX.Y.Z"
   providers = {
+    aws        = aws
     kubernetes = kubernetes
   }
 
@@ -41,6 +42,7 @@ resource "aws_iam_role_policy_attachment" "runner_s3_full_access" {
 module "my_eks_runner_cluster" {
   source = "github.com/humanitec-tf-modules/k8s-runner-cluster-eks?ref=vX.Y.Z"
   providers = {
+    aws        = aws
     kubernetes = kubernetes
   }
 
@@ -65,6 +67,7 @@ This configuration sets up your own AWS IAM role as the runner role. The trust p
 module "my_eks_runner_cluster" {
   source = "github.com/humanitec-tf-modules/k8s-runner-cluster-eks?ref=vX.Y.Z"
   providers = {
+    aws        = aws
     kubernetes = kubernetes
   }
 
@@ -83,6 +86,7 @@ This configuration sets up the required permissions on the Kubernetes cluster to
 module "my_eks_runner_cluster" {
   source = "github.com/humanitec-tf-modules/k8s-runner-cluster-eks?ref=vX.Y.Z"
   providers = {
+    aws        = aws
     kubernetes = kubernetes
   }
 

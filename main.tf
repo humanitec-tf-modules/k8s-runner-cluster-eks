@@ -32,8 +32,10 @@ locals {
     : "${local.iam_role_name_prefix}-${random_string.iam_role_suffix[0].result}"
   )
 
-  iam_role_arn       = var.iam_role_create ? aws_iam_role.runner_role[0].arn : data.aws_iam_role.runner_role[0].arn
-  iam_role_unique_id = var.iam_role_create ? aws_iam_role.runner_role[0].unique_id : data.aws_iam_role.runner_role[0].unique_id
+  # Attributes read back from the IAM role, so that references depend on the role existing
+  iam_role_arn         = var.iam_role_create ? aws_iam_role.runner_role[0].arn : data.aws_iam_role.runner_role[0].arn
+  iam_role_actual_name = var.iam_role_create ? aws_iam_role.runner_role[0].name : data.aws_iam_role.runner_role[0].name
+  iam_role_unique_id   = var.iam_role_create ? aws_iam_role.runner_role[0].unique_id : data.aws_iam_role.runner_role[0].unique_id
 
   # EKS Pod Identity association settings for the runner service account
   pod_identity_association = {

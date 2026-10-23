@@ -31,7 +31,7 @@ output "iam_role_arn" {
   description = "ARN of the IAM role used by the runner"
 }
 output "iam_role_name" {
-  value       = local.iam_role_name
+  value       = local.iam_role_actual_name
   description = "Name of the IAM role used by the runner. Use it to attach IAM policies to the role"
 }
 output "iam_role_unique_id" {
