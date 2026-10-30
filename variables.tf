@@ -17,7 +17,7 @@ variable "runner_serviceaccount_annotations" {
   default     = {}
 }
 variable "runner_role" {
-  description = "Name of the Kubernetes role for the runner"
+  description = "Name of the Kubernetes role for the runner."
   type        = string
   nullable    = false
   default     = "humanitec-runner"
@@ -96,7 +96,7 @@ variable "iam_role_permissions_boundary_arn" {
 }
 variable "iam_role_tags" {
   type        = map(string)
-  description = "Tags to assign to the IAM role created by the module. Only used if `iam_role_create` is `true`"
+  description = "Tags to assign to the IAM role created by the module. Only used if `iam_role_create` is `true`."
   nullable    = true
   default     = null
 
@@ -107,7 +107,7 @@ variable "iam_role_tags" {
 }
 variable "iam_role_arn" {
   type        = string
-  description = "The ARN of an existing AWS IAM role to be used by the runner. It must be located in the account of the `aws` provider that is passed in to the module, and its trust policy must allow EKS Pod Identity to assume it. Use the `iam_role_trust_policy` output to configure it. Required if `iam_role_create` is `false`, must not be set otherwise"
+  description = "The ARN of an existing AWS IAM role to be used by the runner. It must be located in the account of the `aws` provider that is passed in to the module, and its trust policy must allow EKS Pod Identity to assume it. Use the `iam_role_trust_policy` output to configure it. Required if `iam_role_create` is `false`, must not be set otherwise."
   nullable    = true
   default     = null
 
@@ -123,7 +123,7 @@ variable "iam_role_arn" {
 }
 variable "pod_identity_association_create" {
   type        = bool
-  description = "Whether to create the EKS Pod Identity association linking the runner service account to the IAM role. Set to `false` if you manage the association yourself. Use the `pod_identity_association` output to configure it"
+  description = "Whether to create the EKS Pod Identity association linking the runner service account to the IAM role. Set to `false` if you manage the association yourself. Use the `pod_identity_association` output to configure it."
   nullable    = false
   default     = true
 }
