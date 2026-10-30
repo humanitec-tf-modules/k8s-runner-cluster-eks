@@ -78,7 +78,7 @@ module "my_eks_runner_cluster" {
 }
 ```
 
-### Set up a separate runner cluster
+### Cluster is a separate runner cluster, i.e. not on the same cluster as an Operator
 
 This configuration sets up the required permissions on the Kubernetes cluster to be a separate runner cluster.
 
