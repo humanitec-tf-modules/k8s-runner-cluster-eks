@@ -96,8 +96,7 @@ resource "aws_eks_pod_identity_association" "runner_role" {
 
 # Provision the core Kubernetes setup using the generic module
 module "k8s_runner_cluster" {
-  # ❌❌ TODO: use tag once available
-  source = "github.com/humanitec-tf-modules/k8s-runner-cluster?ref=add-runner-cluster"
+  source = "github.com/humanitec-tf-modules/k8s-runner-cluster?ref=v1.0.0"
   providers = {
     kubernetes = kubernetes
   }
