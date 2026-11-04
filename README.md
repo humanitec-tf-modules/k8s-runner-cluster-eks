@@ -117,7 +117,7 @@ module "my_eks_runner_cluster" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_k8s_runner_cluster"></a> [k8s\_runner\_cluster](#module\_k8s\_runner\_cluster) | github.com/humanitec-tf-modules/k8s-runner-cluster | add-runner-cluster |
+| <a name="module_k8s_runner_cluster"></a> [k8s\_runner\_cluster](#module\_k8s\_runner\_cluster) | github.com/humanitec-tf-modules/k8s-runner-cluster | v1.0.0 |
 
 ## Resources
 
