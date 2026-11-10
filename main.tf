@@ -23,15 +23,6 @@ locals {
   # Account ID and name of an existing IAM role, parsed from its ARN
   existing_role_arn_parts = var.iam_role_arn != null ? regex(local.iam_role_arn_pattern, var.iam_role_arn) : null
 
-  # Determine the name of the IAM role: from the existing role, the name passed in, or the constructed name
-  iam_role_name = (
-    !var.iam_role_create
-    ? local.existing_role_arn_parts.name
-    : var.iam_role_name != null
-    ? var.iam_role_name
-    : "${local.iam_role_name_prefix}-${random_string.iam_role_suffix[0].result}"
-  )
-
   # Attributes read back from the IAM role, so that references depend on the role existing
   iam_role_arn         = var.iam_role_create ? aws_iam_role.runner_role[0].arn : data.aws_iam_role.runner_role[0].arn
   iam_role_actual_name = var.iam_role_create ? aws_iam_role.runner_role[0].name : data.aws_iam_role.runner_role[0].name
@@ -66,8 +57,9 @@ data "aws_iam_policy_document" "runner_pod_identity_trust" {
 
 # IAM role and Pod Identity association for the runner
 resource "aws_iam_role" "runner_role" {
-  count                = var.iam_role_create ? 1 : 0
-  name                 = local.iam_role_name
+  count = var.iam_role_create ? 1 : 0
+  # Use the name passed in, or the constructed name
+  name                 = var.iam_role_name != null ? var.iam_role_name : "${local.iam_role_name_prefix}-${random_string.iam_role_suffix[0].result}"
   path                 = var.iam_role_path
   permissions_boundary = var.iam_role_permissions_boundary_arn
   assume_role_policy   = data.aws_iam_policy_document.runner_pod_identity_trust.json
