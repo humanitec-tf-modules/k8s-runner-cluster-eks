@@ -535,6 +535,49 @@ run "existing_role_rejects_other_account" {
   expect_failures = [data.aws_iam_role.runner_role]
 }
 
+run "create_role_accepts_name_of_max_length" {
+  command = plan
+
+  variables {
+    iam_role_name = "a+=,.@_-${join("", [for i in range(56) : "a"])}"
+  }
+
+  assert {
+    condition     = aws_iam_role.runner_role[0].name == var.iam_role_name
+    error_message = "IAM role should accept a name of 64 characters with all allowed special characters"
+  }
+}
+
+run "create_role_rejects_too_long_name" {
+  command = plan
+
+  variables {
+    iam_role_name = join("", [for i in range(65) : "a"])
+  }
+
+  expect_failures = [var.iam_role_name]
+}
+
+run "create_role_rejects_invalid_name_characters" {
+  command = plan
+
+  variables {
+    iam_role_name = "my/role"
+  }
+
+  expect_failures = [var.iam_role_name]
+}
+
+run "create_role_rejects_empty_name" {
+  command = plan
+
+  variables {
+    iam_role_name = ""
+  }
+
+  expect_failures = [var.iam_role_name]
+}
+
 run "existing_role_rejects_name" {
   command = plan
 

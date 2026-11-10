@@ -66,6 +66,11 @@ variable "iam_role_name" {
     condition     = var.iam_role_create || var.iam_role_name == null
     error_message = "iam_role_name must not be set if iam_role_create is false. Use iam_role_arn to pass in an existing IAM role"
   }
+
+  validation {
+    condition     = var.iam_role_name == null || can(regex("^[\\w+=,.@-]{1,64}$", var.iam_role_name))
+    error_message = "iam_role_name must be 1 to 64 characters long and contain only alphanumeric characters and +=,.@_-"
+  }
 }
 variable "iam_role_path" {
   description = "Path of the AWS IAM role to create for the runner, e.g. `/humanitec/`. If not set, the role is created with the path `/`. Only used if `iam_role_create` is `true`."
