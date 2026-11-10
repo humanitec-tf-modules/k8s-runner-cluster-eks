@@ -29,7 +29,7 @@ variable "support_kubernetes_tf_backend" {
   default     = false
 }
 variable "is_separate_runner_cluster" {
-  description = "Whether the target cluster is a separate runner cluster, i.e. not on the same cluster as an Operator. Setting this to `true` results in an additional role created and bound to the runner service account for managing Kubernetes Jobs and related resources."
+  description = "Whether the target cluster is a separate runner cluster, i.e. not on the same cluster as an Operator. Setting this to `true` results in an additional role created for managing Kubernetes Jobs and related resources, bound to the subjects in `separate_runner_cluster_subjects`."
   type        = bool
   nullable    = false
   default     = false
